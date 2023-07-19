@@ -1,0 +1,8 @@
+{"level":"error","error":"strconv.ParseInt: parsing \"\": invalid syntax"}
+{"level":"error","error":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"level":"info","userID":""}
+{"level":"error","error":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"level":"info","userID":""}
+{"level":"error","error":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"level":"info","userID":""}
+{"level":"error","error":"strconv.Atoi: parsing \"\": invalid syntax"}
