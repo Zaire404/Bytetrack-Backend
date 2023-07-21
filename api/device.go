@@ -5,6 +5,7 @@ import (
 	"bytetrack_server/service"
 	"bytetrack_server/util/applog"
 	"bytetrack_server/util/response"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -19,7 +20,7 @@ func DeviceCreateHandler() gin.HandlerFunc {
 		}
 		var request Request
 		if err := ctx.ShouldBindJSON(&request); err != nil {
-			ctx.JSON(http.StatusBadRequest, response.RespError(err, "userID格式错误"))
+			ctx.JSON(http.StatusBadRequest, response.RespError(err, "格式错误"))
 			return
 		}
 		resp, err := service.CreateDevice(&request.DeviceInfo, request.UserID)
@@ -42,6 +43,42 @@ func DeviceInfoGet() gin.HandlerFunc {
 		resp, err := service.GetDeviceInfo(int32(userID))
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, response.RespError(err, "查询失败"))
+			return
+		}
+		ctx.JSON(http.StatusOK, resp)
+	}
+}
+
+func DeviceDeleteHandler() gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		type Request struct {
+			DeviceID int32 `json:"deviceID"`
+		}
+		var request Request
+		if err := ctx.ShouldBindJSON(&request); err != nil {
+			ctx.JSON(http.StatusBadRequest, response.RespError(err, "格式错误"))
+			return
+		}
+		applog.Logger("device").Info().Msg(fmt.Sprintf("%+v", request))
+		resp, err := service.DeleteDevice(request.DeviceID)
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, response.RespError(err, "删除失败"))
+			return
+		}
+		ctx.JSON(http.StatusOK, resp)
+	}
+}
+
+func DeviceUpdateHandler() gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		var request model.DeviceInfo
+		if err := ctx.ShouldBind(&request); err != nil {
+			ctx.JSON(http.StatusBadRequest, response.RespError(err, "格式错误"))
+			return
+		}
+		resp, err := service.UpdateDeviceInfo(&request)
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, response.RespError(err, "更新失败"))
 			return
 		}
 		ctx.JSON(http.StatusOK, resp)

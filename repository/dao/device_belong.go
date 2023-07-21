@@ -23,3 +23,8 @@ func GetDeviceIDByUserID(userID int32) (device_id_list []int32, err error) {
 	}
 	return device_id_list, err
 }
+
+func DeleteDeviceBelongByDeviceID(device_id int32) (err error) {
+	_, err = dal.DeviceBelong.Where(dal.DeviceBelong.DeviceID.Eq(device_id)).Delete()
+	return err
+}

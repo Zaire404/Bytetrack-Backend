@@ -11,6 +11,9 @@ func NewRouter() *gin.Engine {
 	r.POST("user/register", api.UserRegisterHandler())
 	r.POST("user/login", api.UserLoginHandler())
 	r.POST("device/add", api.DeviceCreateHandler())
-	r.GET("device/get_device/:userID", api.DeviceInfoGet())
+	r.POST("device/delete", api.DeviceDeleteHandler())
+	r.POST("device/update", api.DeviceUpdateHandler())
+	r.GET("device/get/:userID", api.DeviceInfoGet())
+
 	return r
 }

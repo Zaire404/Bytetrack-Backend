@@ -24,6 +24,7 @@ func UserRegisterHandler() gin.HandlerFunc {
 		ctx.JSON(http.StatusOK, resp)
 	}
 }
+
 func UserLoginHandler() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var data model.User

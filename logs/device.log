@@ -6,3 +6,13 @@
 {"level":"error","error":"strconv.Atoi: parsing \"\": invalid syntax"}
 {"level":"info","userID":""}
 {"level":"error","error":"strconv.Atoi: parsing \"\": invalid syntax"}
+{"level":"info","message":"{DeviceID:1}"}
+{"level":"info","message":"{DeviceID:0}"}
+{"level":"info","message":"{DeviceID:0}"}
+{"level":"info","message":"{DeviceID:0}"}
+{"level":"info","message":"{DeviceID:0}"}
+{"level":"info","message":"{DeviceID:0}"}
+{"level":"info","message":"{DeviceID:11}"}
+{"level":"info","message":"{DeviceID:9}"}
+{"level":"info","message":"{DeviceID:14}"}
+{"level":"info","message":"{DeviceID:13}"}

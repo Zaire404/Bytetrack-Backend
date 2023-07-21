@@ -18,7 +18,14 @@ func CreateDevice(device *model.DeviceInfo, userID int32) (resp interface{}, err
 		applog.Logger("device").Error().Err(err).Send()
 		return nil, err
 	}
+	return response.RespSuccessWithData(&device), nil
+}
 
+func DeleteDevice(deviceID int32) (resp interface{}, err error) {
+	if err = dao.DeleteDeviceInfoByID(deviceID); err != nil {
+		applog.Logger("device").Error().Err(err).Send()
+		return nil, err
+	}
 	return response.RespSuccess("Create Successfully!"), nil
 }
 
@@ -34,5 +41,12 @@ func GetDeviceInfo(userID int32) (resp interface{}, err error) {
 	}
 
 	return response.RespSuccessWithData(device_info_list), nil
+}
 
+func UpdateDeviceInfo(device_info *model.DeviceInfo) (resp interface{}, err error) {
+	err = dao.UpdateDeviceInfo(device_info)
+	if err != nil {
+		return nil, err
+	}
+	return response.RespSuccess("Update Successfully!"), nil
 }

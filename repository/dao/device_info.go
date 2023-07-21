@@ -31,3 +31,8 @@ func GetDeviceInfoByID(id int32) (device_info *model.DeviceInfo, err error) {
 	device_info, err = dal.DeviceInfo.Where(dal.DeviceInfo.ID.Eq(id)).First()
 	return device_info, err
 }
+
+func UpdateDeviceInfo(device_info *model.DeviceInfo) (err error) {
+	_, err = dal.DeviceInfo.Where(dal.DeviceInfo.ID.Eq(device_info.ID)).Updates(device_info)
+	return err
+}
